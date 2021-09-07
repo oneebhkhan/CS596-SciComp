@@ -12,7 +12,7 @@ NUM_ELEMENTS = 4
 print("Log N", logN)
 print("Log T", logT)
 
-plt.plot(logN, logT)
+plt.plot(logN, logT, marker="o")
 plt.xlabel("log(N)")
 plt.ylabel("log(T)")
 plt.title("Molecular Dynamics: log(T) vs. log(N)")
