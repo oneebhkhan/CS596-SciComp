@@ -12,11 +12,11 @@ NUM_ELEMENTS = 4
 print("Log N", logN)
 print("Log T", logT)
 
-plt.plot(logN, logT, marker="o")
+plt.plot(logN, logT, marker="o", label="Linear Fit")
 plt.xlabel("log(N)")
 plt.ylabel("log(T)")
 plt.title("Molecular Dynamics: log(T) vs. log(N)")
-plt.savefig("HW1-MDTime-Plot.png")
+
 
 point1 = [logN[0], logT[0]]
 point2 = [logN[3], logT[3]]
@@ -38,3 +38,9 @@ b = ( -1*(np.sum(logN)*np.dot(logN, logT)) + (np.sum(np.square(logN))*np.sum(log
 
 print("a: ", a)
 print("b:", b)
+
+x = np.linspace(3.6,4.8,100)
+y = a*x + b
+plt.plot(x, y, ':r', label='Least Square Fit')
+plt.legend(loc='upper left')
+plt.savefig("HW1-MDTime-Plot.png")
