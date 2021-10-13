@@ -17,7 +17,15 @@ int main(int argc, char **argv)
 	vid[1] = (sid / vproc[2]) % vproc[1];
 	vid[2] = sid % vproc[2];
 
-	omp_set_num_threads(nthrd);
+	/* 
+		PREVIOUS CODE SECTION NOT SHOWN
+	*/
+
+	omp_set_num_threads(nthrd); 
+
+	/* 
+		NEXT CODE SECTION NOT SHOWN
+	*/
 
 	init_params();
 	set_topology();
@@ -67,18 +75,25 @@ Initializes parameters.
 	if (sid == 0)
 		printf("al = %e %e %e\n", al[0], al[1], al[2]);
 
+	/* 
+		PREVIOUS CODE SECTION NOT SHOWN
+	*/
 	/* Compute the # of cells for linked cell lists */
 	for (a = 0; a < 3; a++)
 	{
 		lc[a] = al[a] / RCUT;
 
+		
 		/* Size of cell block that each thread is assigned */
 		thbk[a] = lc[a]/vthrd[a];
 		/* # of cells = integer multiple of the # of threads */
 		lc[a] = thbk[a]*vthrd[a]; /* Adjust # of cells/MPI process */ rc[a] = al[a]/lc[a]; /* Linked-list cell length */
-
+		
 		rc[a] = al[a] / lc[a];
 	}
+	/* 
+		NEXT CODE SECTION NOT SHOWN
+	*/
 	if (sid == 0)
 	{
 		printf("lc = %d %d %d\n", lc[0], lc[1], lc[2]);
@@ -317,6 +332,9 @@ boundary-atom list, LSB, then sends & receives boundary atoms.
 	/* Update the # of received boundary atoms */
 	nb = nbnew;
 }
+/* 
+	PREVIOUS CODE SECTION NOT SHOWN
+*/
 
 /*--------------------------------------------------------------------*/
 void compute_accel()
@@ -375,6 +393,10 @@ the residents.
 	rrCut = RCUT * RCUT;
 
 	/* Scan inner cells */
+
+	/* 
+		PREVIOUS CODE SECTION NOT SHOWN
+	*/
 	#pragma omp parallel private(mc, c, mc1, c1, i, j, a) 
 	{
 	double dr[3], rr, ri2, ri6, r1, fcVal, f, vVal;
@@ -474,12 +496,16 @@ the residents.
 			} /* Endfor central cell, c */
 
 	} // End omp parallel
+	
 
 	for (i=0; i<nthrd; i++) lpe += lpe_td[i];
 
 	/* Global potential energy */
 	MPI_Allreduce(&lpe, &potEnergy, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
 }
+/* 
+	NEXT CODE SECTION NOT SHOWN
+*/
 
 /*--------------------------------------------------------------------*/
 void eval_props()
