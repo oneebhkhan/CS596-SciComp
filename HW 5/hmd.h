@@ -79,7 +79,7 @@ int n,nb,nglob;
 double r[NEMAX][3],rv[NEMAX][3],ra[NMAX][3];
 double dbuf[NDBUF],dbufr[NDBUF];
 // int vproc[3] = {2,2,4}, nproc = 16; QUESTIONN??????
-int vproc[3] = {1,1,2}, nproc = 4;
+int vproc[3] = {1,1,2}, nproc = 2;
 int vthrd[3]={2,2,1},nthrd=4; 
 int thbk[3];
 int sid,vid[3],nn[6],myparity[3];

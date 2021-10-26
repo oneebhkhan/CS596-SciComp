@@ -1,0 +1,9 @@
+==========================================
+SLURM_JOB_ID = 6305525
+SLURM_JOB_NODELIST = e16-21
+TMPDIR = /tmp/SLURM_6305525
+==========================================
+##### CPU: gcc -o pdf0 pdf0.c -lm #####
+Execution time (s) = 7.510000e+00
+##### GPU: nvcc -o pdf pdf.cu     #####
+Execution time (s) = 7.100000e-01
