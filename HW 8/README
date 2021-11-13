@@ -1,0 +1,17 @@
+Folder cs596-as08 contains codes for assignment 8 on OpenMP target offload
+and data parallel C++ (DPC++) programming for GPUs.
+
+
+omp_target_pi.c: Computation of Pi using OpenMP target offload; base program for 
+your program, omp_teams_pi.c.
+  How to compile and run your program on Discovery:
+  clang -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda -Xopenmp-target -march=sm_70 --gcc-toolchain=/spack/apps/gcc/8.3.0 omp_teams_pi.c -o omp_teams_pi
+  salloc --partition=gpu --gres=gpu:v100:1 --time=00:30:00
+  ./omp_teams_pi
+
+
+pi.cpp: Computation of pi using DPC++ for optional part.
+  How to compile and run on DevCloud (https://devcloud.intel.com/oneapi):
+  dpcpp -o pi pi.cpp
+  qsub -I -l nodes=1:gpu:ppn=2
+  ./pi
